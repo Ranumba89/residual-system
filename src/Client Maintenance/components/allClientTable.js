@@ -1,9 +1,9 @@
 import { Table } from "react-bootstrap";
 import { useState } from "react";
-import data from "../data.json";
+import {Read} from "../data.js";
 
 const AllClientTable = () => {
-  const [currentData, setCurrentData] = useState(data);
+  const [currentData, setCurrentData] = useState(Read);
 
   return (
     <div>

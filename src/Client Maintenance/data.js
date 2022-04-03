@@ -1,6 +1,4 @@
-
-
- [
+const dataArry = [
     {
         "c_num": "112233",
         "c_Name": "Ralph",
@@ -41,3 +39,11 @@
         "Client": "Walt Disney"
     }
 ]
+export const Read =()=>{
+    
+return dataArry
+
+}
+const Write =(client)=>{
+dataArry.push(client)
+}
