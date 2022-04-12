@@ -1,64 +1,95 @@
-import { Button,Form} from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
+import { useState } from "react";
+import { Read, Write } from "../data"
+const Forms = () => {
 
-const Forms = ()=>{
-  const clientName =(e)=>{
-    console.log(e.target.value);
-    console.log(e.target);
-   const clientNamInp = e.target.value
+ 
+  const initalValues = { Client: "", c_Name: "", phone: "", email: "", c_num:"" }
+  const [formValues, setFormValues] = useState(initalValues)
+
+
+  const num = 1000
+  const clientNum = () => {
+     setFormValues(num += 3)
   }
 
-  const clientAnalyst =(e)=>{
-    const clientanlystInp = e.target.value
-   }
-   const clientPhone =(e)=>{
-    const clientPhoneInp = e.target.value
-   }
-   const clientEmail =(e)=>{
-    const clientEmailInp = e.target.value
-   }
-    return(
-<Form>
-  <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Label>Client #</Form.Label>
-    <Form.Control type="email" placeholder="client #"  />
-    <Form.Text className="text-muted">
-      
-    </Form.Text>
-  </Form.Group>
-  <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Label>Client name</Form.Label>
-    <Form.Control type="email" placeholder="client name" onChange={clientName}/>
-    <Form.Text className="text-muted">
-      
-    </Form.Text>
-  </Form.Group>
   
-  <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Label>Name</Form.Label>
-    <Form.Control type="email" placeholder="name" onChange={clientAnalyst}/>
-    <Form.Text className="text-muted">
-      
-    </Form.Text>
-  </Form.Group>
 
-  <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Label>Phone Number</Form.Label>
-    <Form.Control type="email" placeholder="number" onChange={clientPhone}/>
-    <Form.Text className="text-muted">
-      
-    </Form.Text>
-  </Form.Group>
+  const clientName = (e) => {
+    console.log(e.target.value);
+    console.log(e.target.id);
+    const id = e.target.id;
+    const val = e.target.value;
+    const values = { ...formValues };
+    if (id === "Client") {
+      values.Client = val;
+    } else if (id === "c_Name") {
+      values.c_Name = val;
+    } else if (id === "phone") {
+      values.phone = val;
+    } else if (id === "email") {
+      values.email = val;
+    }
+    //values[id] = val;
+    setFormValues(values)
+  }
 
-  <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Label>Email address</Form.Label>
-    <Form.Control type="email" placeholder="Enter email" onChange={clientEmail}/>
-    <Form.Text className="text-muted">
-      We'll never share your email with anyone else.
+  const submit = (e) => {
+    e.preventDefault();
+    console.log(formValues);
+    Write(formValues)
+    setFormValues(initalValues)
+    console.log(Read());
+
+
+  }
+
+  const clientAnalyst = (e) => {
+    const clientanlystInp = e.target.value
+  }
+  const clientPhone = (e) => {
+    const clientPhoneInp = e.target.value
+  }
+  const clientEmail = (e) => {
+    const clientEmailInp = e.target.value
+  }
+  return (
+    <Form>
+
+      <Form.Group className="mb-3" controlId="Client">
+        <Form.Label>Client name</Form.Label>
+        <Form.Control type="text" placeholder="client name" value={formValues.Client} onChange={clientName} />
+        <Form.Text className="text-muted">
+
+        </Form.Text>
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="c_Name">
+        <Form.Label>Name</Form.Label>
+        <Form.Control type="text" placeholder="name" value={formValues.c_Name} onChange={clientName} />
+        <Form.Text className="text-muted">
+
+        </Form.Text>
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="phone">
+        <Form.Label>Phone Number</Form.Label>
+        <Form.Control type="text" placeholder="number" value={formValues.phone} onChange={clientName} />
+        <Form.Text className="text-muted">
+
+        </Form.Text>
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="email">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control type="email" placeholder="Enter email" value={formValues.email} onChange={clientName} />
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
     </Form.Text>
-  </Form.Group>
-  <Button variant="success" type="submit">
-    Create
+      </Form.Group>
+      <Button variant="success" type="submit" onClick={submit} >
+        Create
   </Button>
-</Form>)
+    </Form>)
 }
 export default Forms;

@@ -44,6 +44,6 @@ export const Read =()=>{
 return dataArry
 
 }
-const Write =(client)=>{
+export const Write =(client)=>{
 dataArry.push(client)
 }
