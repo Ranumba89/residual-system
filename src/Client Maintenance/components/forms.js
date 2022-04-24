@@ -29,7 +29,9 @@ const Forms = () => {
       values.phone = val;
     } else if (id === "email") {
       values.email = val;
-    }
+    }else if (id === "c_num") {
+    values.c_num = val;
+  }
     //values[id] = val;
     setFormValues(values)
   }
@@ -87,6 +89,15 @@ const Forms = () => {
           We'll never share your email with anyone else.
     </Form.Text>
       </Form.Group>
+
+      <Form.Group className="mb-3" controlId="c_num">
+        <Form.Label>Guild</Form.Label>
+        <Form.Control type="text" placeholder="Enter Guild" value={formValues.c_num} onChange={clientName} />
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+    </Form.Text>
+      </Form.Group>
+
       <Button variant="success" type="submit" onClick={submit} >
         Create
   </Button>

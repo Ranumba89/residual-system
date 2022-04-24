@@ -1,17 +1,32 @@
 import { Table } from "react-bootstrap";
-import { useState } from "react";
-import {Read} from "../data.js";
+import { useState, useEffect } from "react";
+import { fetchAllGuild, Read } from "../data.js";
 
 const AllClientTable = () => {
-  const [currentData, setCurrentData] = useState(Read);
+  const [currentData, setCurrentData] = useState([]);
+useEffect(() => {
+  const value = Read();
+  fetch('http://localhost:3000/guild').then((value)=>{
+    setCurrentData(value)
 
+  }).catch((e)=>{
+    console.log(e);
+  })
+  // fetchAllGuild('http://localhost:3000/guild').then((value)=>{
+  //   setCurrentData(value)
+
+  // }).catch((e)=>{
+  //   console.log(e);
+  // })
+  
+}, [])
   return (
     <div>
       <div>
         <input placeholder="search" />
       </div>
       <Table striped bordered hover variant="dark">
-        <thead>
+        {/* <thead>
           <tr>
             <th>Client#</th>
             <th>Client</th>
@@ -33,7 +48,32 @@ const AllClientTable = () => {
               </tr>
             );
           })}
-        </tbody>
+        </tbody> */}
+    
+      <thead>
+       <tr>
+       <th>id#</th>
+       <th>Code</th>
+       <th> Discription</th>
+
+     </tr>
+     </thead>
+      <tbody>
+        {
+          currentData.map((item,index)=>{
+            return (
+              <tr>
+                <td>{item.id}</td>
+                <td>{item.code}</td>
+                <td>{item.description}</td>
+                
+              </tr>
+            )
+          })
+        }
+      </tbody>
+    
+       
       </Table>
     </div>
   );
