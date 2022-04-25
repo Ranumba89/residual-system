@@ -5,7 +5,8 @@ import { fetchAllGuild, Read } from "../data.js";
 const AllClientTable = () => {
   const [currentData, setCurrentData] = useState([]);
 useEffect(() => {
-  const value = Read();
+  // const value = Read();
+  // console.log(value);
   fetch('http://localhost:3000/guild').then((value)=>{
     setCurrentData(value)
 
