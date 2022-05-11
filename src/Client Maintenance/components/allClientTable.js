@@ -7,8 +7,17 @@ const AllClientTable = () => {
 useEffect(() => {
   // const value = Read();
   // console.log(value);
-  fetch('http://localhost:3000/guild').then((value)=>{
-    setCurrentData(value)
+  fetch('http://localhost:3000/guild').then((resp)=>{ //go grab the response
+  if(resp.ok){// if response is okay 
+    resp.json().then((value)=>{ // then change the data 
+      setCurrentData(value) //set the data 
+    })
+    
+    
+
+  }else{
+    console.log(resp.error);
+  }
 
   }).catch((e)=>{
     console.log(e);
