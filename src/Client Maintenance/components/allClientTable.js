@@ -8,7 +8,7 @@ useEffect(() => {
   // const value = Read();
   // console.log(value);
   fetch('http://localhost:3000/guild').then((value)=>{
-    setCurrentData(value)
+    setCurrentData(value) 
 
   }).catch((e)=>{
     console.log(e);
